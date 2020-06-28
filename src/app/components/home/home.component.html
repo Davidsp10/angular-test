@@ -1,0 +1,72 @@
+<div class="detector-screen">
+        
+    <div class="detector-container">
+        
+        <div class="header-background">
+            
+            <div class="title-row">
+                <div class="detector-title">
+                    <h1>ADN detector</h1>
+                    <div id="analyzerResults" class="results">
+                        <p id="CM"><span>CM {{stats.mutants}}</span></p>
+                        <p id="SM"><span>SM </span>{{stats.notMutants}}</p>
+                    </div>
+                </div>
+                
+                <div id="hamburguerMenu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div id="menu-content">
+                    <nav>
+                        <ul class="session-menu">
+                            <li><a [routerLink]="['/login']" class="standardHref">Cerrar Sesión<i class="fas fa-sign-in-alt"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="top-menu">
+                <ul>
+                    <li id="newHumanBtn" (click)="showModal()" class="menu-item">Nuevo Humano</li>
+                    <li id="analyzerBtn" (click)="getResults()" class="menu-item">Analizar humanos</li>
+                    <a [routerLink]="['/home/mutants', '1']" [routerLinkActive]="['active']" class="menu-item">Con mutación</a>
+                    <a [routerLink]="['/home/nomutants', '1']" [routerLinkActive]="['active']" class="menu-item">Sin mutación</a>
+                </ul>
+            </nav>
+            
+        </div>
+
+        <section class="humans-cards" >
+            <div class="human-card" *ngFor = "let human of humans">
+                <div class="top-card">
+                    <div class="human-photo" [ngClass]="{ 'mutant': human.mutantStatus }"></div>
+                    <div class="human-details">
+                        <div class="human-name">{{human.name}}</div>
+                        <div class="human-date">Creado en: {{human.creationDate | date }}</div>
+                    </div>
+                </div>
+                <div class="bottom-card">
+                    <p class="mutationStatus" [ngClass]="{ 'mutant': human.mutantStatus }">{{human.mutantStatus | status}}</p>
+                </div>
+            </div>           
+        </section>
+
+    </div>
+
+    
+</div>
+
+<div id="newHumanModal" class="modal-screen">
+    <div class="modal-container">
+        <div class="blue-circle"></div>
+        <form class="modal-form" #humanForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-modal-field">
+                <input class="formInput" type="text" placeholder="Nombre de humano"
+                    name="name" #name="ngModel" [(ngModel)]="humanResource.name">
+            </div>
+            <input id="newHumanSubmit" class="humanBtn" type="submit" value="Crear humano">
+        </form>
+    </div>
+</div>

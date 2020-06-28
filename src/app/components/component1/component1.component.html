@@ -1,0 +1,36 @@
+<div class="login-screen">
+
+    <div class="small-circle"></div>
+    <div class="medium-circle"></div>
+    <div class="big-circle"></div>
+  
+    <section class="login-container">
+  
+        <div class="login-row">
+  
+            <div class="login-column">
+                <div class="column-title">
+                    <h1 class="test-title">TEST</h1>
+                </div>
+            </div>
+  
+            <div class="login-column">
+                <div class="form-column">
+                    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="form-field">
+                            <input class="formInput" type="text" placeholder="Usuario"
+                                name="nick" #nick="ngModel" [(ngModel)]="loginResource.nick" >
+                        </div>
+                        <div class="form-field">
+                            <input class="formInput" type="password" placeholder="Contraseña"
+                                name="password" #password="ngModel" [(ngModel)]="loginResource.password">
+                        </div>
+                        <input class="loginBtn" type="submit" value="Ingresar">
+                    </form>
+                </div>
+            </div>
+  
+        </div>
+  
+    </section>
+  </div>
